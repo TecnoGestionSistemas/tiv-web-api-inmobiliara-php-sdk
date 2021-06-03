@@ -1,0 +1,273 @@
+<! doctype html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title> Ejemplo de uso servicios web API TIV </title>
+    <meta name="description" content="Ejemplos de uso de llamadas a servicios tiv api">
+    <meta name="author" content="TecnoGestion Sistemas">
+    <style>
+        pre {
+            outline: 1px solid #ccc;
+            padding: 5px;
+            margin: 5px;
+        }
+        
+        .string {
+            color: green;
+        }
+        
+        .number {
+            color: darkorange;
+        }
+        
+        .boolean {
+            color: blue;
+        }
+        
+        .null {
+            color: magenta;
+        }
+        
+        .key {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>TIV API INMOBILIARIAS - TECNOGESTION SISTEMAS</h1>
+    <h2>Cat&aacute;logo</h2>
+    <hr />
+    <div>
+        <button onclick="catalogoEstadosOperacion()">Estados Operaci&oacute;n</button>
+        <button onclick="catalogoOperaciones()">Operaciones</button>
+        <button onclick="catalogoProductos()">Productos</button>
+        <button onclick="catalogoSubProductos()">Sub-Productos</button>
+        <button onclick="catalogoUbicaciones()">Ubicaciones</button>
+        <button onclick="catalogoUbicacionesHijas()">Ubicaciones Hijas</button>
+        <button onclick="catalogoTiposEmprendimiento()">Tipos Emprendimiento</button>
+        <button onclick="catalogoEtapasEmprendimiento()">Etapas Emprendimiento</button>
+        <button onclick="catalogoTiposConsultasInmueble()">Tipos Consultas Inmueble</button>
+        <button onclick="catalogoTiposConsultasEmprendimiento()">Tipos Consultas Emprendimiento</button>
+    </div>
+    <h2>inmuebles</h2>
+    <hr />
+    <div>
+        <button onclick="inmueblesEmprendimiento()">Emprendimiento</button>
+        <button onclick="inmueblesBuscar()">Buscar</button>
+        <button onclick="inmueblesImagenes()">Imagenes</button>
+        <button onclick="inmueblesConsulta()">consulta</button>
+        <button onclick="inmueblesRecientes()">Recientes</button>
+        <button onclick="inmueblesDestacados()">Destacados</button>
+    </div>
+    <h2>Empresa</h2>
+    <hr />
+    <div>
+        <button onclick="empresaSucursales()">Sucursales</button>
+        <button onclick="empresaConsulta()">Consulta</button>
+    </div>
+    <h2>Inmuebles</h2>
+    <hr />
+    <div>
+        <button onclick="inmueblesInmueble()">Inmueble</button>
+        <button onclick="inmueblesBuscar()">Buscar</button>
+        <button onclick="inmueblesImagenes()">Imagenes</button>
+        <button onclick="inmueblesConsulta()">consulta</button>
+        <button onclick="inmueblesDestacados()">Destacados</button>
+    </div>
+    <h2>Response</h2>
+    <hr />
+    <em id="response-data">
+    </em>
+    <pre id="pre-code">    
+    </pre>
+
+    <!--Scripts Catálogo-->
+    <script>
+        // Estados Operación 
+        var catalogoEstadosOperacion = () => getRequest("/api/catalogo/estadosoperacion");
+
+        // Operaciones
+        var catalogoOperaciones = () => getRequest("/api/catalogo/operaciones");
+
+        // Productos
+        var catalogoProductos = () => getRequest("/api/catalogo/productos");
+
+        // Sub-Productos
+        var catalogoSubProductos = () => getRequest("/api/catalogo/subproductos/1");
+
+        // Ubicaciones
+        var catalogoUbicaciones = () => getRequest("/api/catalogo/ubicaciones/");
+
+        // Ubicaciones hijas
+        var catalogoUbicacionesHijas = () => getRequest("/api/catalogo/ubicaciones/1");
+
+        // Tipos Emprendimiento
+        var catalogoTiposEmprendimiento = () => getRequest("/api/catalogo/tiposemprendimiento");
+
+        // Etapas Emprendimiento
+        var catalogoEtapasEmprendimiento = () => getRequest("/api/catalogo/etapasemprendimiento");
+
+        // Tipos Consultas Inmueble
+        var catalogoTiposConsultasInmueble = () => getRequest("/api/catalogo/tiposconsultasinmueble");
+
+        // Tipos Consultas Emprendimiento
+        var catalogoTiposConsultasEmprendimiento = () => getRequest("/api/catalogo/tiposconsultasemprendimiento");
+    </script>
+
+    <!--Scripts inmuebles-->
+    <script>
+        // Emprendimiento
+        var inmueblesEmprendimiento = () => getRequest("/api/inmuebles/2473");
+
+        // Buscar
+        var inmueblesBuscar = () => getRequest("/api/inmuebles/buscar/?pagina=1&pagina_cantidad_registros=10");
+
+        // Imagenes
+        var inmueblesImagenes = () => getRequest("/api/inmuebles/imagenes/2473");
+
+        // Consulta
+        var inmueblesConsulta = () => {
+            let formdata = new FormData();
+            formdata.append("nombre", "prueba");
+            formdata.append("email", "prueba@prueba.com");
+
+            postRequest("/api/inmuebles/consulta/2473", formdata);
+        };
+
+        // Recientes
+        var inmueblesRecientes = () => getRequest("/api/inmuebles/recientes/?tipo_id=1");
+
+        // Destacados
+        var inmueblesDestacados = () => getRequest("/api/inmuebles/destacados/?tipo_id=1");
+    </script>
+
+    <!--Scripts Empresa-->
+    <script>
+        // Sucursales
+        var empresaSucursales = () => getRequest("/api/empresa/sucursales");
+
+        // Consulta
+        var empresaConsulta = () => {
+            let formdata = new FormData();
+            formdata.append("tipo_consulta_id", "4");
+            formdata.append("nombre", "prueba");
+            formdata.append("email", "prueba@prueba.com");
+
+            postRequest("/api/empresa/consulta", formdata);
+        };
+    </script>
+
+    <!--Scripts Inmuebles-->
+    <script>
+        // Inmueble
+        var inmueblesInmueble = () => getRequest("/api/inmuebles/118049");
+
+        // Buscar
+        var inmueblesBuscar = () => getRequest("/api/inmuebles/buscar/?pagina=1&pagina_cantidad_registros=10");
+
+        // Imagenes
+        var inmueblesImagenes = () => getRequest("/api/inmuebles/imagenes/118049");
+
+        // Consulta
+        var inmueblesConsulta = () => {
+            let formdata = new FormData();
+            formdata.append("nombre", "prueba");
+            formdata.append("email", "prueba@prueba.com");
+
+            postRequest("/api/inmuebles/consulta/118049", formdata);
+        };
+
+        // Destacados
+        var inmueblesDestacados = () => getRequest("/api/inmuebles/destacados/?pagina=1&pagina_cantidad_registros=10");
+    </script>
+
+    <!--Scripts-->
+    <script>
+        function getRequest(resource) {
+            addResponseData("", "", "");
+            document.getElementById("pre-code").innerHTML = "Ejecutando...";
+
+            var myHeaders = new Headers();
+            myHeaders.append("Accept", "application/json");
+
+            var requestOptions = {
+                method: 'GET',
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch(resource, requestOptions)
+                .then(response => {
+                    addResponseData(response.status, response.statusText, response.url);
+                    return response.text();
+                })
+                .then(result => addResponse(result))
+                .catch(error => addError(error));
+        }
+
+        function postRequest(resource, formdata) {
+            addResponseData("", "", "");
+            document.getElementById("pre-code").innerHTML = "Ejecutando...";
+
+            var myHeaders = new Headers();
+            myHeaders.append("Accept", "application/json");
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: formdata,
+                redirect: 'follow'
+            };
+
+            fetch(resource, requestOptions)
+                .then(response => {
+                    addResponseData(response.status, response.statusText, response.url);
+                    return response.text();
+                })
+                .then(result => addResponse(result))
+                .catch(error => addError(error));
+        }
+
+        function addError(error) {
+            document.getElementById("pre-code").innerHTML = "Error: " + error;
+            console.log('error', error);
+        }
+
+        function addResponse(obj) {
+            var inp = JSON.stringify(JSON.parse(obj), undefined, 4);
+            document.getElementById("pre-code").innerHTML = syntaxHighlight(inp);
+        }
+
+        function addResponseData(status, statusText, url) {
+            let str = `Status: ${status}<br/>`;
+            str += `StatusText: ${statusText}<br/>`;
+            str += `Url: ${url}`;
+            document.getElementById("response-data").innerHTML = str;
+        }
+
+        function syntaxHighlight(json) {
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(match) {
+                var cls = 'number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'key';
+                    } else {
+                        cls = 'string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
+        }
+    </script>
+</body>
+
+</html>

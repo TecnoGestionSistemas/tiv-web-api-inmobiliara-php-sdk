@@ -1,0 +1,32 @@
+# Turn rewrite engine on
+Options +FollowSymlinks
+RewriteEngine on
+
+
+# map neat URL to internal URL
+RewriteRule ^catalogo/estadosoperacion$   CatalogoRestController.php?view=estados-operacion [nc,qsa]
+RewriteRule ^catalogo/operaciones$   CatalogoRestController.php?view=operaciones [nc,qsa]
+RewriteRule ^catalogo/productos$   CatalogoRestController.php?view=productos [nc,qsa]
+RewriteRule ^catalogo/subproductos/([0-9]+)$   CatalogoRestController.php?view=sub-productos&id=$1 [nc,qsa]
+RewriteRule ^catalogo/ubicaciones/$   CatalogoRestController.php?view=ubicaciones [nc,qsa]
+RewriteRule ^catalogo/ubicaciones/([0-9]+)$   CatalogoRestController.php?view=ubicaciones&id=$1 [nc,qsa]
+RewriteRule ^catalogo/tiposemprendimiento$   CatalogoRestController.php?view=tipos-emprendimiento [nc,qsa]
+RewriteRule ^catalogo/etapasemprendimiento$   CatalogoRestController.php?view=etapas-emprendimiento [nc,qsa]
+RewriteRule ^catalogo/tiposconsultasinmueble$   CatalogoRestController.php?view=tipos-consultas-inmueble [nc,qsa]
+RewriteRule ^catalogo/tiposconsultasemprendimiento$   CatalogoRestController.php?view=tipos-consultas-emprendimiento [nc,qsa]
+
+RewriteRule ^emprendimientos/([0-9]+)$   EmprendimientosRestController.php?view=get&id=$1 [nc,qsa]
+RewriteRule ^emprendimientos/buscar/$   EmprendimientosRestController.php?view=buscar&$ [nc,qsa]
+RewriteRule ^emprendimientos/imagenes/([0-9]+)$   EmprendimientosRestController.php?view=imagenes&id=$1 [nc,qsa]
+RewriteRule ^emprendimientos/consulta/([0-9]+)$   EmprendimientosRestController.php?view=consulta&id=$1 [nc,qsa]
+RewriteRule ^emprendimientos/recientes/$   EmprendimientosRestController.php?view=recientes&$ [nc,qsa]
+RewriteRule ^emprendimientos/destacados/$   EmprendimientosRestController.php?view=destacados&$ [nc,qsa]
+
+RewriteRule ^empresa/sucursales$   EmpresaRestController.php?view=sucursales [nc,qsa]
+RewriteRule ^empresa/consulta$   EmpresaRestController.php?view=consulta [nc,qsa,l]
+
+RewriteRule ^inmuebles/([0-9]+)$   InmueblesRestController.php?view=get&id=$1 [nc,qsa]
+RewriteRule ^inmuebles/buscar/$   InmueblesRestController.php?view=buscar&$ [nc,qsa]
+RewriteRule ^inmuebles/imagenes/([0-9]+)$   InmueblesRestController.php?view=imagenes&id=$1 [nc,qsa]
+RewriteRule ^inmuebles/consulta/([0-9]+)$   InmueblesRestController.php?view=consulta&id=$1 [nc,qsa]
+RewriteRule ^inmuebles/destacados/$   InmueblesRestController.php?view=destacados&$ [nc,qsa]
