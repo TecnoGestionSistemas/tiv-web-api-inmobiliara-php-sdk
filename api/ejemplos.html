@@ -53,15 +53,15 @@
         <button onclick="catalogoTiposConsultasInmueble()">Tipos Consultas Inmueble</button>
         <button onclick="catalogoTiposConsultasEmprendimiento()">Tipos Consultas Emprendimiento</button>
     </div>
-    <h2>inmuebles</h2>
+    <h2>Emprendimiento</h2>
     <hr />
     <div>
-        <button onclick="inmueblesEmprendimiento()">Emprendimiento</button>
-        <button onclick="inmueblesBuscar()">Buscar</button>
-        <button onclick="inmueblesImagenes()">Imagenes</button>
-        <button onclick="inmueblesConsulta()">consulta</button>
-        <button onclick="inmueblesRecientes()">Recientes</button>
-        <button onclick="inmueblesDestacados()">Destacados</button>
+        <button onclick="emprendimientosEmprendimiento()">Emprendimiento</button>
+        <button onclick="emprendimientosBuscar()">Buscar</button>
+        <button onclick="emprendimientosImagenes()">Imagenes</button>
+        <button onclick="emprendimientosConsulta()">consulta</button>
+        <button onclick="emprendimientosRecientes()">Recientes</button>
+        <button onclick="emprendimientosDestacados()">Destacados</button>
     </div>
     <h2>Empresa</h2>
     <hr />
@@ -118,31 +118,31 @@
         var catalogoTiposConsultasEmprendimiento = () => getRequest("/api/catalogo/tiposconsultasemprendimiento");
     </script>
 
-    <!--Scripts inmuebles-->
+    <!--Scripts Emprendimientos-->
     <script>
         // Emprendimiento
-        var inmueblesEmprendimiento = () => getRequest("/api/inmuebles/2473");
+        var emprendimientosEmprendimiento = () => getRequest("/api/emprendimientos/2473");
 
         // Buscar
-        var inmueblesBuscar = () => getRequest("/api/inmuebles/buscar/?pagina=1&pagina_cantidad_registros=10");
+        var emprendimientosBuscar = () => getRequest("/api/emprendimientos/buscar/?pagina=1&pagina_cantidad_registros=10");
 
         // Imagenes
-        var inmueblesImagenes = () => getRequest("/api/inmuebles/imagenes/2473");
+        var emprendimientosImagenes = () => getRequest("/api/emprendimientos/imagenes/2473");
 
         // Consulta
-        var inmueblesConsulta = () => {
+        var emprendimientosConsulta = () => {
             let formdata = new FormData();
             formdata.append("nombre", "prueba");
             formdata.append("email", "prueba@prueba.com");
 
-            postRequest("/api/inmuebles/consulta/2473", formdata);
+            postRequest("/api/emprendimientos/consulta/2473", formdata);
         };
 
         // Recientes
-        var inmueblesRecientes = () => getRequest("/api/inmuebles/recientes/?tipo_id=1");
+        var emprendimientosRecientes = () => getRequest("/api/emprendimientos/recientes/?tipo_id=1");
 
         // Destacados
-        var inmueblesDestacados = () => getRequest("/api/inmuebles/destacados/?tipo_id=1");
+        var emprendimientosDestacados = () => getRequest("/api/emprendimientos/destacados/?tipo_id=1");
     </script>
 
     <!--Scripts Empresa-->
@@ -187,6 +187,11 @@
 
     <!--Scripts-->
     <script>
+        function getBaseUrl() {
+            var baseUrl = window.location.pathname.replace("/api/ejemplos.html", "");
+            return baseUrl;
+        }
+
         function getRequest(resource) {
             addResponseData("", "", "");
             document.getElementById("pre-code").innerHTML = "Ejecutando...";
@@ -199,6 +204,8 @@
                 headers: myHeaders,
                 redirect: 'follow'
             };
+
+            resource = getBaseUrl() + resource;
 
             fetch(resource, requestOptions)
                 .then(response => {
@@ -222,6 +229,8 @@
                 body: formdata,
                 redirect: 'follow'
             };
+
+            resource = getBaseUrl() + resource;
 
             fetch(resource, requestOptions)
                 .then(response => {

@@ -11,7 +11,7 @@ class RestBaseTIVHelper {
   const API_URL_BASE = 'https://api.tiv.com.ar/';
   protected $api_key = null;
 
-  private function baseCurl(string $resource, string $method, mixed $params = null){
+  private function baseCurl(string $resource, string $method, array $params = null){
       $curl = curl_init();
 
       $endpoint = self::API_URL_BASE . $resource;
@@ -42,21 +42,22 @@ class RestBaseTIVHelper {
       return $curl;
   }
 
-  protected function getCurl(string $resource, mixed $params = null) {
+  protected function getCurl(string $resource, array $params = null) {
 
       $curl = self::baseCurl($resource, 'GET', $params);
-      
+
+
       $response = curl_exec($curl);
       
       if ($response === false)
           $response = curl_error($curl);
       
       curl_close($curl);
-      
+
       return json_decode($response);
   }
 
-  protected function postCurl(string $resource, mixed $params = null) {
+  protected function postCurl(string $resource, array $params = null) {
 
     $curl = self::baseCurl($resource, 'POST', $params);
     
@@ -141,7 +142,7 @@ class TivInmobiliarias extends RestBaseTIVHelper {
           /*
             pagina=1&pagina_cantidad_registros=5&tipo_id=1&operacion_tipo_id=2&producto_id=2&subproducto_id=1&pais_id=1& region_id=1&zona_id=1&barrios=[5,6,7]&sucursales=[20049,20093]&superficie_desde=0&superficie_hasta=50&precio_desde=0&precio_hasta=1000000&descripcion_busqueda=departamento&dormitorios=[1,2,4]&con_cochera=true&apto_profesional=true&con_balcon=true&con_balcon_terraza=true&con_dependencia=true&amoblado=true&con_vigilancia=true&incluir_sin_unidades_disponibles=true&geolocalizacion_tipo_busqueda=1&geolocalizacion_puntos=-34.6932125,-58.6115764|-34.6577147,-58.663065&etapa_id=1&entrega=18&cantidad_tipologias=4&orden=1
           */
-          return $this->getCurl("{$this->base_url}/buscar", $params);
+          return $this->getCurl("{$this->base_url}/buscar", $params);          
         }
 
         public function imagenes(int $emprendimientoId){
