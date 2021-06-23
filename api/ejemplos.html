@@ -77,6 +77,7 @@
         <button onclick="inmueblesImagenes()">Imagenes</button>
         <button onclick="inmueblesConsulta()">consulta</button>
         <button onclick="inmueblesDestacados()">Destacados</button>
+        <button onclick="inmueblesFeedResumenNovedades()">Feed Resumen Novedades</button>
     </div>
     <h2>Response</h2>
     <hr />
@@ -183,6 +184,9 @@
 
         // Destacados
         var inmueblesDestacados = () => getRequest("/api/inmuebles/destacados/?pagina=1&pagina_cantidad_registros=10");
+
+        // Feed Resumen Novedades
+        var inmueblesFeedResumenNovedades = () => getRequest("/api/inmuebles/feed/resumen/novedades/?pagina=1&pagina_cantidad_registros=10&estados_operacion=[1]&publicacion_activa=true");
     </script>
 
     <!--Scripts-->

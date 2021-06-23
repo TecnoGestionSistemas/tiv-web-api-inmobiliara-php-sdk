@@ -2,7 +2,7 @@
 /*
 * TECNOGESTION SISTEMAS
 * API INMOBILIARIAS
-* VERSIÓN: 1.0.0.0
+* VERSIÓN: 1.0.0.1
 * DOCUMENTACIÓN: https://api.tiv.com.ar/docs/index.html
 */
 
@@ -227,6 +227,16 @@ class TivInmobiliarias extends RestBaseTIVHelper {
             sucursal_id=2&tipo_id=1&incluir_sin_unidades_disponibles=true&cantidad_tipologias=4&cantidad_registros=8
           */
           return $this->getCurl("{$this->base_url}/destacados", $params);
+        }
+        
+        public function feedResumenNovedades(array $params = array(
+          'pagina' => 1,
+          'pagina_cantidad_registros' => 50
+        )){
+          /*
+            pagina=1&pagina_cantidad_registros=10&estados_operacion=[1,2,3]&sucursales=[1,2,3]&incluir_unidades_emprendimiento=true&publicacion_activa=true&fecha_novedad=2021-05-01 12:45:23&orden=7
+          */
+          return $this->getCurl("{$this->base_url}/Feed/Resumen/Novedades", $params);
         }        
       };
     }/*public function Inmuebles()*/

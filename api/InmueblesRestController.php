@@ -40,6 +40,12 @@ switch($view){
         $inmueblesRestHandler->destacados($_GET);
         break;
 
+    case "feed-resumen-novedades":
+        // to handle REST Url /inmuebles/feed/resumen/novedades/
+        $inmueblesRestHandler = new InmueblesRestHandler();
+        $inmueblesRestHandler->feedResumenNovedades($_GET);
+        break;
+
 	case "" :
 		//404 - not found;
 		break;

@@ -235,6 +235,12 @@ $response = $inmuebles->destacados(array(
     'pagina' => 1,
     'pagina_cantidad_registros' => 5
 ));
+$response = $inmuebles->feedResumenNovedades(array(
+  'pagina' => 1,
+  'pagina_cantidad_registros' => 5,
+  'estados_operacion' => [1],
+  'publicacion_activa' => 'true'
+));
 ```
 
 ### Archivo ejemplos
@@ -371,6 +377,10 @@ curl --location --request POST 'http://localhost/api/inmuebles/consulta/1234' \
 
 // Destacados
 curl --location --request GET 'http://localhost/api/inmuebles/destacados/?pagina=1&pagina_cantidad_registros=10' \
+--header 'Accept: application/json'
+
+// Feed Resumen Novedades
+curl --location --request GET 'http://localhost/api/inmuebles/feed/resumen/novedades?pagina=1&pagina_cantidad_registros=10&estados_operacion=[1]&incluir_unidades_emprendimiento=true&publicacion_activa=true' \
 --header 'Accept: application/json'
 
 ```

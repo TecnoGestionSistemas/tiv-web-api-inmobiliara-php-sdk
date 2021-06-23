@@ -2,7 +2,7 @@
 /*
 * TECNOGESTION SISTEMAS
 * API INMOBILIARIAS - ARCHIVO TEST
-* VERSIÓN: 1.0.0.0
+* VERSIÓN: 1.0.0.1
 * DOCUMENTACIÓN: https://api.tiv.com.ar/docs/index.html
 */
 
@@ -183,6 +183,13 @@ $response = $inmuebles->destacados(array(
     'pagina_cantidad_registros' => 5
 ));
 */
-
+/*
+$response = $inmuebles->feedResumenNovedades(array(
+  'pagina' => 1,
+  'pagina_cantidad_registros' => 5,
+  'estados_operacion' => [1],
+  'publicacion_activa' => 'true'
+));
+*/
 var_dump($response);
 ?>
