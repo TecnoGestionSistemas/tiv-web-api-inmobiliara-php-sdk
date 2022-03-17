@@ -48,6 +48,7 @@
         <button onclick="catalogoSubProductos()">Sub-Productos</button>
         <button onclick="catalogoUbicaciones()">Ubicaciones</button>
         <button onclick="catalogoUbicacionesHijas()">Ubicaciones Hijas</button>
+        <button onclick="catalogoUbicacionesDesc()">Ubicaciones Descripción</button>
         <button onclick="catalogoTiposEmprendimiento()">Tipos Emprendimiento</button>
         <button onclick="catalogoEtapasEmprendimiento()">Etapas Emprendimiento</button>
         <button onclick="catalogoTiposConsultasInmueble()">Tipos Consultas Inmueble</button>
@@ -79,6 +80,11 @@
         <button onclick="inmueblesDestacados()">Destacados</button>
         <button onclick="inmueblesFeedResumenNovedades()">Feed Resumen Novedades</button>
     </div>
+    <h2>Autocomplete</h2>
+    <hr />
+    <div>
+        <button onclick="autocompleteUbicaciones()">Ubicaciones</button>
+    </div>    
     <h2>Response</h2>
     <hr />
     <em id="response-data">
@@ -105,6 +111,9 @@
 
         // Ubicaciones hijas
         var catalogoUbicacionesHijas = () => getRequest("/api/catalogo/ubicaciones/1");
+
+        // Ubicaciones desc
+        var catalogoUbicacionesDesc = () => getRequest("/api/catalogo/ubicaciones/?desc=belg");
 
         // Tipos Emprendimiento
         var catalogoTiposEmprendimiento = () => getRequest("/api/catalogo/tiposemprendimiento");
@@ -187,6 +196,12 @@
 
         // Feed Resumen Novedades
         var inmueblesFeedResumenNovedades = () => getRequest("/api/inmuebles/feed/resumen/novedades/?pagina=1&pagina_cantidad_registros=10&estados_operacion=[1]&publicacion_activa=true");
+    </script>
+
+    <!--Scripts Autocomplete-->
+    <script>
+        // Ubicaciones
+        var autocompleteUbicaciones = () => getRequest("/api/autocomplete/ubicaciones/?term=belg");
     </script>
 
     <!--Scripts-->

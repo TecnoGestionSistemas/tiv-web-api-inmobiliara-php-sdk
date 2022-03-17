@@ -33,11 +33,14 @@ $inmuebles = $core->Inmuebles();
 
 // Ejemplos endpoints Catalogo
 //============================
-$response = $catalogo->estadosOperacion();
+//$response = $catalogo->estadosOperacion();
 //$response = $catalogo->operaciones();
 //$response = $catalogo->productos();
 //$response = $catalogo->subProductos(1);
-//$response = $catalogo->ubicaciones(1);
+$response = $catalogo->ubicaciones(array(
+  //'desc' => 'jose',
+  'padre_id' => 1
+));
 //$response = $catalogo->tiposEmprendimiento();
 //$response = $catalogo->etapasEmprendimiento();
 //$response = $catalogo->tiposConsultasInmueble();

@@ -2,7 +2,7 @@
 /*
 * TECNOGESTION SISTEMAS
 * API INMOBILIARIAS
-* VERSIÓN: 1.0.0.1
+* VERSIÓN: 1.0.0.2
 * DOCUMENTACIÓN: https://api.tiv.com.ar/docs/index.html
 */
 
@@ -100,11 +100,10 @@ class TivInmobiliarias extends RestBaseTIVHelper {
           return $this->getCurl("{$this->base_url}/subproductos/{$productoId}");
         }
 
-        public function ubicaciones(int $padreId = null){
-          $params = null;
-          if($padreId !=null)
-            $params = array('padre_id' => $padreId);
-
+        public function ubicaciones(array $params = array(
+          'padre_id' => null,
+          'desc' => null
+        )){
           return $this->getCurl("{$this->base_url}/ubicaciones", $params);
         }
 

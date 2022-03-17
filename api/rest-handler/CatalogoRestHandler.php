@@ -89,10 +89,10 @@ class CatalogoRestHandler extends SimpleRest {
         echo $response;
 	}
 
-	function ubicaciones($id) {	
+	function ubicaciones($params) {	
 
         $catalogoService = (new TivInmobiliarias)->Catalogo();        
-        $responseService = $catalogoService->ubicaciones($id);
+        $responseService = $catalogoService->ubicaciones($params);
         /*
 		if(empty($rawData)) {
 			$statusCode = 404;
@@ -109,6 +109,41 @@ class CatalogoRestHandler extends SimpleRest {
         $response = $this->encodeJson($responseService);
         echo $response;
 	}	
+
+	function ubicacionesAutocomplete($params)
+	{
+		$catalogoService = (new TivInmobiliarias)->Catalogo();
+		$responseService = $catalogoService->ubicaciones($params);
+
+		/*
+		if(empty($rawData)) {
+			$statusCode = 404;
+			$rawData = array('error' => 'No mobiles found!');		
+		} else {
+			$statusCode = 200;
+		}
+        */
+
+		$jsonResponse = array();
+		if($responseService != null && sizeof($responseService->items) > 0) {
+			$jsonResponse = array_map(function($value) {
+				$label = $value->otras_descripciones->completa;
+				$rtn = array(
+					'label' => $label,
+					'value' => $value->id,
+					'nivel' => sizeof(explode(',',$label))
+				);
+				return $rtn;
+			}, $responseService->items);
+		}
+		$statusCode = 200;
+
+		$requestContentType = $_SERVER['HTTP_ACCEPT'];
+		$this->setHttpHeaders($requestContentType, $statusCode);
+
+		$response = $this->encodeJson($jsonResponse);
+		echo $response;
+	}
 
 	function tiposEmprendimiento() {	
 

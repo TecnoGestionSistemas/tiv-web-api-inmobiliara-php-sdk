@@ -35,10 +35,9 @@ switch($view){
 		break;
 
     case "ubicaciones":
-        // to handle REST Url /catalogo/ubicaciones/<id>
-        $id = isset($_GET["id"]) ? $_GET["id"] : null;
+        // to handle REST Url /catalogo/ubicaciones/
         $catalogoRestHandler = new CatalogoRestHandler();
-        $catalogoRestHandler->ubicaciones($id);
+        $catalogoRestHandler->ubicaciones($_GET);
         break;
 
     case "tipos-emprendimiento":
